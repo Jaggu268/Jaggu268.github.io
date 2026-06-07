@@ -518,8 +518,10 @@ const barObs=new IntersectionObserver(entries=>{
 },{threshold:.3});
 document.querySelectorAll('.skill-bar-fill').forEach(b=>barObs.observe(b));
 
-// ── 3D CARD TILT ──
+// ── 3D CARD TILT + CLICKABLE CARD ──
 document.querySelectorAll('.project-card').forEach(card=>{
+  const link=card.querySelector('.project-link');
+  if(link){card.style.cursor='pointer';card.addEventListener('click',e=>{if(!e.target.closest('a'))window.open(link.href,'_blank')});}
   card.addEventListener('mousemove',e=>{
     const r=card.getBoundingClientRect();
     const x=(e.clientX-r.left)/r.width-.5;
